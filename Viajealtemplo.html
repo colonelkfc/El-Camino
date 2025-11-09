@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuncio Sellamiento y Viaje al Templo</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load elegant fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Define colors and elegant fonts */
+        :root {
+            --color-gold: #B8860B; /* Darker Gold for elegance */
+            --color-light-gold: #FFD700; /* Brighter Gold for shimmer */
+            --color-dark: #333333; /* Dark text/background */
+            --color-border: #E0E0E0;
+        }
+        .font-script {
+            font-family: 'Dancing Script', cursive;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Styling for the printable area */
+        .poster-container {
+            /* Standard Letter size dimensions for digital viewing */
+            width: 8.5in;
+            height: 11in;
+            margin: 0 auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* PRINT STYLES - CRITICAL FOR POSTER */
+        @media print {
+            @page {
+                size: Letter; /* 8.5in x 11in */
+                margin: 0.5in; /* Reduce margins for max content area */
+            }
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .poster-container {
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+        }
+
+        /* Custom styles for links/buttons to match gold theme */
+        .rsvp-button {
+            transition: all 0.2s;
+            background-color: var(--color-gold);
+            color: white !important;
+            border: 1px solid var(--color-gold);
+            font-weight: 700;
+        }
+        .rsvp-button:hover {
+            opacity: 0.9;
+            background-color: var(--color-light-gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* Shimmer effect */
+        }
+        
+        .shimmer-text {
+            /* Mimics the gold glitter text/border look */
+            color: var(--color-dark);
+            text-shadow: 
+                0 0 5px var(--color-light-gold), 
+                0 0 10px var(--color-gold);
+        }
+
+        .elegant-divider {
+            border-top: 2px solid var(--color-gold);
+            margin: 1.5rem 0;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            border-style: solid;
+        }
+
+        .date-border-v {
+            border-left: 2px solid var(--color-gold);
+            border-right: 2px solid var(--color-gold);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4">
+
+    <!-- POSTER CONTAINER -->
+    <div class="poster-container bg-white flex flex-col p-8 rounded-xl shadow-2xl text-gray-800">
+
+        <!-- ELEGANT HEADER SECTION (Matching Invitation Style) -->
+        <header class="text-center mb-6 pt-4">
+            <h1 class="font-script text-6xl tracking-wide mb-1" style="color: var(--color-gold);">
+                Yovani & Anayared
+            </h1>
+            <p class="font-playfair text-xl text-gray-600 mb-6">
+                Sellamiento de la Familia y Viaje al Templo
+            </p>
+
+            <!-- DATE BLOCK (Vertical/Bar Layout) -->
+            <div class="flex justify-center items-center my-6">
+                <span class="font-playfair text-3xl font-bold pr-4" style="color: var(--color-gold);">SAB</span>
+                <span class="shimmer-text font-playfair text-6xl font-bold px-6 date-border-v">22 NOV</span>
+                <span class="font-playfair text-3xl font-bold pl-4" style="color: var(--color-gold);">2025</span>
+            </div>
+            
+            <hr class="elegant-divider">
+        </header>
+
+        <!-- MAIN CONTENT SECTION (Single Column for elegance) -->
+        <main class="flex-grow">
+            <h2 class="font-playfair text-2xl font-bold text-center mb-4 text-gray-900">
+                Detalles del Evento
+            </h2>
+
+            <!-- TIME & LOCATION GRID -->
+            <section class="p-4 mb-4 rounded-lg bg-gray-50 border border-gray-200">
+                <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                    <!-- Column 1: Temple Time -->
+                    <div class="border-r pr-4">
+                        <h4 class="font-bold text-lg mb-1 text-gray-800" style="color: var(--color-dark);">✨ EVENTO EN EL TEMPLO</h4>
+                        <p><strong style="color: var(--color-dark);">Punto de Encuentro (Carpool):</strong> <span class="font-semibold" style="color: var(--color-gold);">9:30 AM</span></p>
+                        <p>Capilla de Fremont (Punto de Salida)</p>
+                        <p class="mt-2"><strong style="color: var(--color-dark);">Sellamiento e Investiduras:</strong> <span class="font-semibold" style="color: var(--color-gold);">11:00 AM</span></p>
+                        <p class="text-xs">Lugar: Templo de Oakland</p>
+                    </div>
+                    <!-- Column 2: Reception Time -->
+                    <div class="pl-4">
+                        <h4 class="font-bold text-lg mb-1 text-gray-800" style="color: var(--color-dark);">🎉 RECEPCIÓN DE BODA</h4>
+                        <p><strong>Inicio de la Fiesta:</strong> <span class="font-semibold" style="color: var(--color-gold);">3:00 PM</span></p>
+                        <p><strong>Comida Servida:</strong> 3:30 PM - 5:30 PM</p>
+                        <p><strong>Entretenimiento y DJ:</strong> A partir de 5:45 PM</p>
+                        <p class="text-xs mt-2">Lugar: Capilla de Fremont</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-gray-200 text-center">
+                    <p class="text-sm font-bold text-gray-700">
+                        Capilla de Fremont (771 W Fremont Ave, Sunnyvale, CA 94087)
+                    </p>
+                </div>
+            </section>
+            
+            <!-- SUMMARY DETAILS -->
+            <section class="p-4 text-sm leading-relaxed">
+                <p>
+                    Vengan al templo a celebrar el sellamiento de Yovani y Anayared entre sí y con sus hijos. Pueden unirse a la caravana de carpools a las 9:30 AM desde la **Capilla de Fremont**, o reunirse con nosotros en el templo a las 11:00 AM. Todos están invitados al templo (ya sea para el sellamiento, sesiones de investidura, bautismos o simplemente los jardines) y a la fiesta de celebración en la Capilla de Fremont.
+                </p>
+            </section>
+
+            <!-- CONTACT -->
+            <section class="p-4 bg-gray-100 rounded-lg mt-2">
+                <h4 class="font-bold text-lg mb-2 text-center" style="color: var(--color-dark);">CONTACTO</h4>
+                <div class="text-sm grid grid-cols-3 gap-2 text-center">
+                    <div><strong>Hermanos:</strong> Iain Bruce</div>
+                    <div><strong>Hermanas:</strong> Mariela Ponce Pomar</div>
+                    <div><strong>Jóvenes:</strong> Valeria Johns</div>
+                    <div class="font-semibold">650-643-6638</div>
+                    <div class="font-semibold">408-389-9760</div>
+                    <div class="font-semibold">650-799-8226</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER: RSVP SECTION -->
+        <footer class="mt-6 pt-4 border-t-2" style="border-color: var(--color-gold);">
+            <h3 class="text-xl font-bold text-center mb-3 text-gray-900 shimmer-text font-playfair">
+                ¡CONFIRMAR SU ASISTENCIA ES ESENCIAL!
+            </h3>
+            <div class="flex flex-col md:flex-row justify-around space-y-4 md:space-y-0 md:space-x-4">
+                
+                <!-- LINK 1: TEMPLE TRIP/CARPOOL REGISTRATION -->
+                <div class="flex-1 p-3 rounded-xl text-center border-2 border-gray-300">
+                    <p class="text-sm font-semibold mb-2 text-gray-800">1. Registro para el Viaje (Carpool)</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAzV-dziXhmzRbbFuhh1KldWayfJ74H2ZTAj3Z1uWSx1wxhQ/viewform" target="_blank" class="rsvp-button inline-block w-full py-2 px-6 rounded-full uppercase text-xs tracking-wider hover:text-gray-900">
+                        Registrarse AQUÍ
+                    </a>
+                </div>
+
+                <!-- LINK 2: WEDDING RECEPTION RSVP -->
+                <div class="flex-1 p-3 rounded-xl text-center border-2 border-gray-300">
+                    <p class="text-sm font-semibold mb-2 text-gray-800">2. RSVP para la Recepción de Boda</p>
+                    <a href="https://partiful.com/e/fK5x3aMKdLWPuTdXUAn9" target="_blank" class="rsvp-button inline-block w-full py-2 px-6 rounded-full uppercase text-xs tracking-wider hover:text-gray-900">
+                        Confirmar Fiesta AQUÍ
+                    </a>
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- INSTRUCTIONS FOR USER -->
+    <div class="mt-8 text-center text-sm text-gray-600 print:hidden">
+        <p>
+            **Para Imprimir:** Abra el archivo, y luego presione `Ctrl+P` (Windows) o `Cmd+P` (Mac) y seleccione "Letter" como tamaño de papel.
+        </p>
+    </div>
+
+</body>
+</html>
