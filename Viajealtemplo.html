@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anuncio Sellamiento y Viaje al Templo</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load elegant fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load elegant fonts --><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Define colors and elegant fonts */
         :root {
-            --color-gold: #B8860B; /* Darker Gold for elegance */
-            --color-light-gold: #FFD700; /* Brighter Gold for shimmer */
-            --color-dark: #333333; /* Dark text/background */
-            --color-border: #E0E0E0;
+            --color-gold: #FFD700; /* Brighter gold for contrast against dark background */
+            --color-light-gold: #FFFACD; /* Lighter gold for shimmer */
+            --color-dark: #FFFFFF; /* White text for readability */
+            --color-border: rgba(255, 255, 255, 0.3); /* Lighter border for contrast */
+            --bg-overlay: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
         }
         .font-script {
             font-family: 'Dancing Script', cursive;
@@ -25,18 +24,42 @@
 
         /* Styling for the printable area */
         .poster-container {
-            /* Standard Letter size dimensions for digital viewing */
             width: 8.5in;
             height: 11in;
             margin: 0 auto;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative; /* For background image */
+            background-image: url('eternalimagebackdrop.jpeg'); /* Your image as backdrop */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: var(--color-dark); /* Default text color to white */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* Enhance readability for all text */
+        }
+
+        /* Overlay for better text contrast if needed */
+        .poster-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--bg-overlay); /* Semi-transparent dark overlay */
+            z-index: 1; /* Place below content but above background image */
+        }
+
+        /* All content should be above the overlay */
+        .poster-container > * {
+            position: relative;
+            z-index: 2;
         }
 
         /* PRINT STYLES - CRITICAL FOR POSTER */
         @media print {
             @page {
                 size: Letter; /* 8.5in x 11in */
-                margin: 0.5in; /* Reduce margins for max content area */
+                margin: 0.35in; /* Further reduce margins for max content area */
             }
             body {
                 margin: 0;
@@ -49,15 +72,35 @@
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
             }
+             /* Ensure text and QR codes have solid backgrounds for print readability */
+            .bg-white-backdrop {
+                background-color: rgba(255, 255, 255, 0.9) !important; /* Slightly transparent white for print */
+                color: #333333 !important; /* Dark text on white for print */
+            }
+            .bg-white-backdrop h4, .bg-white-backdrop strong {
+                color: #333333 !important;
+                text-shadow: none !important;
+            }
+            .text-on-dark-bg {
+                background-color: rgba(0, 0, 0, 0.7); /* Dark background for text sections */
+                color: white !important;
+                text-shadow: none !important;
+            }
+             .text-on-dark-bg p, .text-on-dark-bg strong, .text-on-dark-bg div {
+                color: white !important;
+                text-shadow: none !important;
+            }
+
         }
 
         /* Custom styles for links/buttons to match gold theme */
         .rsvp-button {
             transition: all 0.2s;
             background-color: var(--color-gold);
-            color: white !important;
+            color: #333333 !important; /* Dark text on gold button */
             border: 1px solid var(--color-gold);
             font-weight: 700;
+            text-shadow: none; /* No shadow for buttons */
         }
         .rsvp-button:hover {
             opacity: 0.9;
@@ -66,8 +109,7 @@
         }
         
         .shimmer-text {
-            /* Mimics the gold glitter text/border look */
-            color: var(--color-dark);
+            color: var(--color-gold); /* Gold for important text */
             text-shadow: 
                 0 0 5px var(--color-light-gold), 
                 0 0 10px var(--color-gold);
@@ -86,52 +128,52 @@
             border-left: 2px solid var(--color-gold);
             border-right: 2px solid var(--color-gold);
         }
+
+        /* Specific styles for QR code containers */
+        .qr-container {
+            background-color: rgba(255, 255, 255, 0.95); /* Nearly opaque white background */
+            padding: 10px;
+            border-radius: 8px;
+            text-shadow: none; /* Remove text shadow for QR code area */
+        }
+        .qr-container p, .qr-container strong {
+            color: #333333; /* Dark text on white background */
+        }
     </style>
 </head>
 <body class="bg-gray-100 p-4">
 
-    <!-- POSTER CONTAINER -->
-    <div class="poster-container bg-white flex flex-col p-8 rounded-xl shadow-2xl text-gray-800">
+    <!-- POSTER CONTAINER --><div class="poster-container flex flex-col p-8 rounded-xl shadow-2xl">
 
-        <!-- ELEGANT HEADER SECTION (Matching Invitation Style) -->
-        <header class="text-center mb-6 pt-4">
-            <h1 class="font-script text-6xl tracking-wide mb-1" style="color: var(--color-gold);">
+        <!-- ELEGANT HEADER SECTION (Matching Invitation Style) --><header class="text-center mb-6 pt-4 text-white">
+            <h1 class="font-script text-6xl tracking-wide mb-1 shimmer-text">
                 Yovani & Anayared
             </h1>
-            <p class="font-playfair text-xl text-gray-600 mb-6">
+            <p class="font-playfair text-xl text-white mb-6">
                 Sellamiento de la Familia y Viaje al Templo
             </p>
 
-            <!-- DATE BLOCK (Vertical/Bar Layout) -->
-            <div class="flex justify-center items-center my-6">
-                <span class="font-playfair text-3xl font-bold pr-4" style="color: var(--color-gold);">SAB</span>
-                <span class="shimmer-text font-playfair text-6xl font-bold px-6 date-border-v">22 NOV</span>
-                <span class="font-playfair text-3xl font-bold pl-4" style="color: var(--color-gold);">2025</span>
+            <!-- DATE BLOCK (Vertical/Bar Layout) --><div class="flex justify-center items-center my-6">
+                <span class="font-playfair text-3xl font-bold pr-4 shimmer-text">SAB</span>
+                <span class="font-playfair text-6xl font-bold px-6 date-border-v shimmer-text">22 NOV</span>
+                <span class="font-playfair text-3xl font-bold pl-4 shimmer-text">2025</span>
             </div>
             
             <hr class="elegant-divider">
         </header>
 
-        <!-- MAIN CONTENT SECTION (Single Column for elegance) -->
-        <main class="flex-grow">
-            <h2 class="font-playfair text-2xl font-bold text-center mb-4 text-gray-900">
-                Detalles del Evento
-            </h2>
-
-            <!-- TIME & LOCATION GRID -->
-            <section class="p-4 mb-4 rounded-lg bg-gray-50 border border-gray-200">
+        <!-- MAIN CONTENT SECTION (Single Column for elegance) --><main class="flex-grow">
+            <!-- TIME & LOCATION GRID --><section class="p-4 mb-4 rounded-lg bg-white-backdrop border text-on-dark-bg">
                 <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                    <!-- Column 1: Temple Time -->
-                    <div class="border-r pr-4">
-                        <h4 class="font-bold text-lg mb-1 text-gray-800" style="color: var(--color-dark);">✨ EVENTO EN EL TEMPLO</h4>
+                    <!-- Column 1: Temple Time --><div class="border-r pr-4 border-gray-300">
+                        <h4 class="font-bold text-lg mb-1" style="color: var(--color-gold);">✨ EVENTO EN EL TEMPLO</h4>
                         <p><strong style="color: var(--color-dark);">Punto de Encuentro (Carpool):</strong> <span class="font-semibold" style="color: var(--color-gold);">9:30 AM</span></p>
                         <p>Capilla de Fremont (Punto de Salida)</p>
                         <p class="mt-2"><strong style="color: var(--color-dark);">Sellamiento e Investiduras:</strong> <span class="font-semibold" style="color: var(--color-gold);">11:00 AM</span></p>
                         <p class="text-xs">Lugar: Templo de Oakland</p>
                     </div>
-                    <!-- Column 2: Reception Time -->
-                    <div class="pl-4">
-                        <h4 class="font-bold text-lg mb-1 text-gray-800" style="color: var(--color-dark);">🎉 RECEPCIÓN DE BODA</h4>
+                    <!-- Column 2: Reception Time --><div class="pl-4">
+                        <h4 class="font-bold text-lg mb-1" style="color: var(--color-gold);">🎉 RECEPCIÓN DE BODA</h4>
                         <p><strong>Inicio de la Fiesta:</strong> <span class="font-semibold" style="color: var(--color-gold);">3:00 PM</span></p>
                         <p><strong>Comida Servida:</strong> 3:30 PM - 5:30 PM</p>
                         <p><strong>Entretenimiento y DJ:</strong> A partir de 5:45 PM</p>
@@ -139,24 +181,22 @@
                     </div>
                 </div>
 
-                <div class="mt-4 pt-3 border-t border-gray-200 text-center">
+                <div class="mt-4 pt-3 border-t border-gray-300 text-center">
                     <p class="text-sm font-bold text-gray-700">
                         Capilla de Fremont (771 W Fremont Ave, Sunnyvale, CA 94087)
                     </p>
                 </div>
             </section>
             
-            <!-- SUMMARY DETAILS -->
-            <section class="p-4 text-sm leading-relaxed">
+            <!-- SUMMARY DETAILS --><section class="p-4 text-sm leading-relaxed text-white text-on-dark-bg rounded-lg">
                 <p>
                     Vengan al templo a celebrar el sellamiento de Yovani y Anayared entre sí y con sus hijos. Pueden unirse a la caravana de carpools a las 9:30 AM desde la **Capilla de Fremont**, o reunirse con nosotros en el templo a las 11:00 AM. Todos están invitados al templo (ya sea para el sellamiento, sesiones de investidura, bautismos o simplemente los jardines) y a la fiesta de celebración en la Capilla de Fremont.
                 </p>
             </section>
 
-            <!-- CONTACT -->
-            <section class="p-4 bg-gray-100 rounded-lg mt-2">
-                <h4 class="font-bold text-lg mb-2 text-center" style="color: var(--color-dark);">CONTACTO</h4>
-                <div class="text-sm grid grid-cols-3 gap-2 text-center">
+            <!-- CONTACT --><section class="p-4 bg-white-backdrop rounded-lg mt-2 text-on-dark-bg">
+                <h4 class="font-bold text-lg mb-2 text-center" style="color: #333333;">CONTACTO</h4>
+                <div class="text-sm grid grid-cols-3 gap-2 text-center text-gray-800">
                     <div><strong>Hermanos:</strong> Iain Bruce</div>
                     <div><strong>Hermanas:</strong> Mariela Ponce Pomar</div>
                     <div><strong>Jóvenes:</strong> Valeria Johns</div>
@@ -167,25 +207,34 @@
             </section>
         </main>
 
-        <!-- FOOTER: RSVP SECTION -->
-        <footer class="mt-6 pt-4 border-t-2" style="border-color: var(--color-gold);">
-            <h3 class="text-xl font-bold text-center mb-3 text-gray-900 shimmer-text font-playfair">
+        <!-- FOOTER: RSVP SECTION --><footer class="mt-6 pt-4 border-t-2" style="border-color: var(--color-gold);">
+            <h3 class="text-xl font-bold text-center mb-3 shimmer-text font-playfair">
                 ¡CONFIRMAR SU ASISTENCIA ES ESENCIAL!
             </h3>
             <div class="flex flex-col md:flex-row justify-around space-y-4 md:space-y-0 md:space-x-4">
                 
-                <!-- LINK 1: TEMPLE TRIP/CARPOOL REGISTRATION -->
-                <div class="flex-1 p-3 rounded-xl text-center border-2 border-gray-300">
-                    <p class="text-sm font-semibold mb-2 text-gray-800">1. Registro para el Viaje (Carpool)</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAzV-dziXhmzRbbFuhh1KldWayfJ74H2ZTAj3Z1uWSx1wxhQ/viewform" target="_blank" class="rsvp-button inline-block w-full py-2 px-6 rounded-full uppercase text-xs tracking-wider hover:text-gray-900">
+                <!-- LINK 1: TEMPLE TRIP/CARPOOL REGISTRATION (With QR Code) --><div class="flex-1 p-3 rounded-xl text-center border-2 border-gray-300 qr-container">
+                    <p class="text-sm font-semibold mb-2">1. Registro para el Viaje (Carpool)</p>
+                    <img 
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://docs.google.com/forms/d/e/1FAIpQLSfAzV-dziXhmzRbbFuhh1KldWayfJ74H2ZTAj3Z1uWSx1wxhQ/viewform" 
+                        alt="QR Code for Carpool Registration" 
+                        class="w-24 h-24 mx-auto mb-2 border-2 rounded-lg"
+                        style="border-color: var(--color-gold);"
+                    >
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAzV-dziXhmzRbbFuhh1KldWayfJ74H2ZTAj3Z1uWSx1wxhQ/viewform" target="_blank" class="rsvp-button inline-block w-full py-2 px-6 rounded-full uppercase text-xs tracking-wider">
                         Registrarse AQUÍ
                     </a>
                 </div>
 
-                <!-- LINK 2: WEDDING RECEPTION RSVP -->
-                <div class="flex-1 p-3 rounded-xl text-center border-2 border-gray-300">
-                    <p class="text-sm font-semibold mb-2 text-gray-800">2. RSVP para la Recepción de Boda</p>
-                    <a href="https://partiful.com/e/fK5x3aMKjLWPuTdXUAn9" target="_blank" class="rsvp-button inline-block w-full py-2 px-6 rounded-full uppercase text-xs tracking-wider hover:text-gray-900">
+                <!-- LINK 2: WEDDING RECEPTION RSVP (With QR Code) --><div class="flex-1 p-3 rounded-xl text-center border-2 border-gray-300 qr-container">
+                    <p class="text-sm font-semibold mb-2">2. RSVP para la Recepción de Boda</p>
+                    <img 
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://partiful.com/e/fK5x3aMKjLWPuTdXUAn9" 
+                        alt="QR Code for Wedding Reception RSVP" 
+                        class="w-24 h-24 mx-auto mb-2 border-2 rounded-lg"
+                        style="border-color: var(--color-gold);"
+                    >
+                    <a href="https://partiful.com/e/fK5x3aMKjLWPuTdXUAn9" target="_blank" class="rsvp-button inline-block w-full py-2 px-6 rounded-full uppercase text-xs tracking-wider">
                         Confirmar Fiesta AQUÍ
                     </a>
                 </div>
@@ -195,12 +244,10 @@
 
     </div>
 
-    <!-- INSTRUCTIONS FOR USER -->
-    <div class="mt-8 text-center text-sm text-gray-600 print:hidden">
+    <!-- INSTRUCTIONS FOR USER (Hidden on Print) --><div class="mt-8 text-center text-sm text-gray-600 print:hidden">
         <p>
-            **Para Imprimir:** Abra el archivo, y luego presione `Ctrl+P` (Windows) o `Cmd+P` (Mac) y seleccione "Letter" como tamaño de papel.
+            **Para Imprimir:** Abra el archivo, y luego presione `Ctrl+P` (Windows) o `Cmd+P` (Mac) y seleccione "Letter" como tamaño de papel. Asegúrese de que la opción "Background graphics" esté marcada para imprimir el fondo.
         </p>
     </div>
-
 </body>
 </html>
